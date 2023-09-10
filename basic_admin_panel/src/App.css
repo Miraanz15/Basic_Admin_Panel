@@ -1,5 +1,12 @@
+body{
+  margin: 0px;
+}
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: 70% 30%;
 }
-
+.right{
+  background-color: pink;
+}
 
