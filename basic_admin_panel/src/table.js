@@ -12,19 +12,9 @@ const Table = () => {
             .then((data) => setData(data))
             .catch((error) => console.error('Error fetching data:', error));
         }, []);
-      
-        // Function to handle scrolling to the next page
-        const nextPage = () => {
-          setStartIndex(startIndex + rowsPerPage);
-        };
-      
-        // Function to handle scrolling to the previous page
-        const prevPage = () => {
-          setStartIndex(Math.max(0, startIndex - rowsPerPage));
-        };
 
     return (
-        <div>
+        <div className='tableContainer'>
           <table>
             <thead>
               <tr>
@@ -35,24 +25,18 @@ const Table = () => {
                  <td>Phone</td>
               </tr>
             </thead>
-            <tbody>
-              {data.slice(startIndex, startIndex + rowsPerPage).map((item, index) => (
-                <tr key={index}>
+            <tbody className='scrollable'>
+              {data.map((item) => (
+                <tr key={item.id}>
                   <td>{item.id}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{item.firstName}</td>
+                  <td>{item.lastName}</td>
+                  <td>{item.email}</td>
+                  <td>{item.phone}</td>
                 </tr>
               ))}
-            </tbody>
-          </table>
-    
-          {/* Arrow scroll controls */}
-          <div>
-            <button onClick={prevPage} disabled={startIndex === 0}>Previous</button>
-            <button onClick={nextPage} disabled={startIndex + rowsPerPage >= data.length}>Next</button>
-          </div>
+            </tbody> 
+          </table>   
         </div>
       );
 }
