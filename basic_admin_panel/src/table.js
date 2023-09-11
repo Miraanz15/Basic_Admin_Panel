@@ -2,15 +2,12 @@ import React, {useState, useEffect} from 'react';
 import './table.css';
 
 const Table = () => {
-    const ScrollableTable = () => {
         const [data, setData] = useState([]);
         const [startIndex, setStartIndex] = useState(0);
-        const rowsPerPage = 10;
+        const rowsPerPage = 5;
       
         useEffect(() => {
-          // Fetch data from your API
-          // Replace 'your-api-endpoint' with your actual API endpoint
-          fetch('your-api-endpoint')
+          fetch('http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D')
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.error('Error fetching data:', error));
@@ -30,12 +27,22 @@ const Table = () => {
         <div>
           <table>
             <thead>
-              {/* Table headers */}
+              <tr>
+                 <td>Id</td>
+                 <td>FirstName</td>
+                 <td>LastName</td>
+                 <td>Email</td>
+                 <td>Phone</td>
+              </tr>
             </thead>
             <tbody>
-              {data.slice(startIndex, startIndex + rowsPerPage).map((row, index) => (
+              {data.slice(startIndex, startIndex + rowsPerPage).map((item, index) => (
                 <tr key={index}>
-                  {/* Render table cells */}
+                  <td>{item.id}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               ))}
             </tbody>
@@ -48,8 +55,8 @@ const Table = () => {
           </div>
         </div>
       );
-    }
 }
+
 
 export default Table;
 
